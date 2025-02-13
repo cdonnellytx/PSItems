@@ -153,7 +153,7 @@
     $EnumerationOptions.IgnoreInaccessible = $IgnoreInaccessible
     $EnumerationOptions.RecurseSubdirectories = $Recurse.IsPresent
     $EnumerationOptions.MatchCasing = $MatchCasing
-    $EnumerationOptions.AttributesToSkip = $AttributesToSkip
+    $EnumerationOptions.AttributesToSkip = $AttributesToSkip ? $AttributesToSkip : 0 # BUGBUG: Nonempty array coerces to flag enum correctly, but empty array coerces to... "Directory".
     if ($PSBoundParameters.ContainsKey('MatchType')) { $EnumerationOptions.MaxRecursionDepth = $MatchType }
     if ($PSBoundParameters.ContainsKey('Depth')) { $EnumerationOptions.MaxRecursionDepth = $Depth; $EnumerationOptions.RecurseSubdirectories = $true }
     $EnumerationOptions.ReturnSpecialDirectories = $IncludeSpecialDirectories.IsPresent
